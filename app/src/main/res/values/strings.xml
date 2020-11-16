@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">LuxMeter</string>
+    <string name="scan_hint">لطفا کد روی محصول را در کادر بیاورید.</string>
+    <string name="use_code">نوشتن عبارت</string>
+    <string name="error">خطا</string>
+</resources>
