@@ -63,8 +63,8 @@ public class Login extends AppCompatActivity implements QRCodeReaderView.OnQRCod
     private void connectToAccessPoint(String ssid, String password) {
         try {
             WifiConfiguration wifiConfig = new WifiConfiguration();
-            wifiConfig.SSID = String.format("\"%s\"", "Alireza iPhone");
-            wifiConfig.preSharedKey = String.format("\"%s\"", "qazwsxedc735");
+            wifiConfig.SSID = String.format("\"%s\"", ssid);
+            wifiConfig.preSharedKey = String.format("\"%s\"", password);
 
             WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
             //remember id
