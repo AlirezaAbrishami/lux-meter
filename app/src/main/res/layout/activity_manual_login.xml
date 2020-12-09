@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ManualLogin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/manual_login_text_view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="90dp"
+        android:text="@string/credentials"
+        android:textAllCaps="true"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/manual_login_text_view"
+        android:layout_marginTop="15dp"
+        android:hint="@string/ssid"
+        android:id="@+id/manual_login_ssid"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/manual_login_ssid"
+        android:layout_marginTop="25dp"
+        android:hint="@string/password"
+        android:id="@+id/manual_login_password"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/manual_login_password"
+        android:layout_marginBottom="50dp"
+        android:text="@string/connect"
+        android:textAllCaps="false"
+        android:background="@drawable/mybutton"
+        android:textStyle="bold"
+        android:textColor="#ffffff"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
