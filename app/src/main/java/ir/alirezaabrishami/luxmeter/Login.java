@@ -1,6 +1,7 @@
 package ir.alirezaabrishami.luxmeter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -128,6 +129,10 @@ public class Login extends AppCompatActivity implements QRCodeReaderView.OnQRCod
     private void init() {
         qrCodeReaderView = findViewById(R.id.qr_c);
         writeCode = findViewById(R.id.login_button);
+        AppCompatDelegate
+                .setDefaultNightMode(
+                        AppCompatDelegate
+                                .MODE_NIGHT_YES);
     }
 
     @Override
