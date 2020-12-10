@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ManualLogin">
+    tools:context=".ManualLogin"
+    android:background="@color/backgroundColor">
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,21 +16,26 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="90dp"
         android:text="@string/credentials"
-        android:textAllCaps="true"/>
+        android:textAllCaps="true"
+        android:textColor="@color/text"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/manual_login_text_view"
         android:layout_marginTop="15dp"
         android:hint="@string/ssid"
-        android:id="@+id/manual_login_ssid"/>
+        android:id="@+id/manual_login_ssid"
+        android:textColor="@color/textColor"
+        android:textColorHint="@color/hintColor"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/manual_login_ssid"
         android:layout_marginTop="25dp"
         android:hint="@string/password"
-        android:id="@+id/manual_login_password"/>
+        android:id="@+id/manual_login_password"
+        android:textColor="@color/textColor"
+        android:textColorHint="@color/hintColor"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -7,4 +7,7 @@
     <color name="backgroundColor">#121212</color>
     <color name="textColor">#FFFFFF</color>
     <color name="elevationColor">#1E1E1E</color>
+    <color name="hintColor">#698291</color>
+    <color name="text">#4E5760</color>
+
 </resources>
