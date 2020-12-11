@@ -1,7 +1,9 @@
 package ir.alirezaabrishami.luxmeter;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -85,6 +87,9 @@ public class Login extends AppCompatActivity implements QRCodeReaderView.OnQRCod
             wifiManager.disconnect();
             wifiManager.enableNetwork(netId, true);
             wifiManager.reconnect();
+            wifiManager.getConnectionInfo();
+            Intent intent = new Intent(Login.this, MainActivity.class);
+            startActivity(intent);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -139,6 +144,8 @@ public class Login extends AppCompatActivity implements QRCodeReaderView.OnQRCod
     private void init() {
         qrCodeReaderView = findViewById(R.id.qr_c);
         writeCode = findViewById(R.id.login_button);
+        Toolbar toolbar = findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
 //        AppCompatDelegate
 //                .setDefaultNightMode(
 //                        AppCompatDelegate
@@ -165,7 +172,7 @@ public class Login extends AppCompatActivity implements QRCodeReaderView.OnQRCod
     public void onQRCodeRead(String text, PointF[] points) {
         Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
         assert vibrator != null;
-        vibrator.vibrate(400);
+        vibrator.vibrate(250);
         processText(text);
     }
 }

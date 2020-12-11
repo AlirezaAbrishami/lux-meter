@@ -4,50 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ManualLogin"
-    android:background="@color/backgroundColor">
+    android:background="@color/backgroundColor"
+    tools:context=".ManualLogin">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar" />
 
     <TextView
+        android:id="@+id/manual_login_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/manual_login_text_view"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="2dp"
         android:layout_marginTop="90dp"
         android:text="@string/credentials"
         android:textAllCaps="true"
-        android:textColor="@color/text"/>
+        android:textColor="@color/text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
+        android:id="@+id/manual_login_ssid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/manual_login_text_view"
         android:layout_marginTop="15dp"
         android:hint="@string/ssid"
-        android:id="@+id/manual_login_ssid"
         android:textColor="@color/textColor"
-        android:textColorHint="@color/hintColor"/>
+        android:textColorHint="@color/hintColor"
+        app:layout_constraintTop_toBottomOf="@id/manual_login_text_view" />
+
     <EditText
+        android:id="@+id/manual_login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/manual_login_ssid"
         android:layout_marginTop="25dp"
         android:hint="@string/password"
-        android:id="@+id/manual_login_password"
+        android:inputType="textPassword"
         android:textColor="@color/textColor"
-        android:textColorHint="@color/hintColor"/>
+        android:textColorHint="@color/hintColor"
+        app:layout_constraintTop_toBottomOf="@id/manual_login_ssid" />
+
     <Button
+        android:id="@+id/manual_login_connect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/connect"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/manual_login_password"
-        android:layout_marginBottom="50dp"
-        android:text="@string/connect"
-        android:textAllCaps="false"
-        android:background="@drawable/mybutton"
-        android:textStyle="bold"
-        android:textColor="#ffffff"/>
+        app:layout_constraintTop_toBottomOf="@id/manual_login_password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
