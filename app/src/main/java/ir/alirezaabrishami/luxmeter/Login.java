@@ -107,7 +107,8 @@ public class Login extends AppCompatActivity implements QRCodeReaderView.OnQRCod
             wifiManager.disconnect();
             wifiManager.enableNetwork(netId, true);
             wifiManager.reconnect();
-            wifiManager.getConnectionInfo();
+            String a = wifiManager.getConnectionInfo().toString();
+            Log.e("WiFi", a);
             Intent intent = new Intent(Login.this, MainActivity.class);
             startActivity(intent);
         } catch (Exception ex) {

@@ -7,4 +7,5 @@
     <string name="ssid">SSID</string>
     <string name="password">Password</string>
     <string name="connect">Connect</string>
+    <string name="fill_error">Please enter the device info</string>
 </resources>
