@@ -23,6 +23,7 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
@@ -35,6 +36,7 @@ public class Login extends AppCompatActivity implements QRCodeReaderView.OnQRCod
     QRCodeReaderView qrCodeReaderView;
     private static final int PERMISSION_REQUEST_CODE = 200;
     Button writeCode;
+    ImageView nightSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,24 @@ public class Login extends AppCompatActivity implements QRCodeReaderView.OnQRCod
         } else {
             requestPermission();
         }
+        nightSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int defaultNight = AppCompatDelegate.getDefaultNightMode();
+                if (defaultNight < 2)
+                    AppCompatDelegate
+                            .setDefaultNightMode(
+                                    AppCompatDelegate
+                                            .MODE_NIGHT_YES);
+                else {
+                    AppCompatDelegate
+                            .setDefaultNightMode(
+                                    AppCompatDelegate
+                                            .MODE_NIGHT_NO);
+                }
+
+            }
+        });
         writeCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -146,10 +166,7 @@ public class Login extends AppCompatActivity implements QRCodeReaderView.OnQRCod
         writeCode = findViewById(R.id.login_button);
         Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-//        AppCompatDelegate
-//                .setDefaultNightMode(
-//                        AppCompatDelegate
-//                                .MODE_NIGHT_YES);
+        nightSwitch = findViewById(R.id.tool_bar_button);
     }
 
     @Override
