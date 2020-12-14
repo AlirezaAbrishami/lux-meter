@@ -74,7 +74,7 @@ public class ManualLogin extends AppCompatActivity {
             wifiManager.reconnect();
             String a = wifiManager.getConnectionInfo().toString();
             Log.e("WiFi", a);
-            Intent intent = new Intent(Login.this, MainActivity.class);
+            Intent intent = new Intent(ManualLogin.this, MainActivity.class);
             startActivity(intent);
         } catch (Exception ex) {
             ex.printStackTrace();
