@@ -21,7 +21,8 @@
         android:textAllCaps="true"
         android:textColor="@color/text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tool_bar" />
+        app:layout_constraintTop_toBottomOf="@id/tool_bar"
+        android:visibility="gone"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,7 +34,8 @@
         android:textAllCaps="true"
         android:textColor="@color/text"
         android:textStyle="bold"
-        android:id="@+id/main_reset"/>
+        android:id="@+id/main_reset"
+        android:visibility="gone"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_first_layout"
