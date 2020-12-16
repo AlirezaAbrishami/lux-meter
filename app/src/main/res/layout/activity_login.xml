@@ -64,7 +64,7 @@
         android:elevation="8dp"
         android:text="@string/manual_login"
         android:textAllCaps="false"
-        android:textColor="@color/textColor"
+        android:textColor="@color/buttonTextColor"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -6,7 +6,7 @@
     app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/colorPrimary"
-    app:titleTextColor="@color/textColor">
+    app:titleTextColor="@color/buttonTextColor">
 
     <ImageView
         android:layout_width="wrap_content"

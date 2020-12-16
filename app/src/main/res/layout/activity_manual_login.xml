@@ -52,7 +52,7 @@
         android:background="@drawable/mybutton"
         android:text="@string/connect"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
+        android:textColor="@color/buttonTextColor"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
