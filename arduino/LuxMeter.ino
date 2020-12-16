@@ -13,9 +13,6 @@ void setup() {
 
     delay(1000);
     WiFi.softAP(ssid, password);
-    Serial.println("Connected to the WiFi network");
-    Serial.println(WiFi.localIP());
-
     wifiServer.begin();
     pinMode(36, INPUT);
     pinMode(24, INPUT_PULLDOWN);
