@@ -32,10 +32,10 @@
         android:layout_marginEnd="5dp"
         android:text="@string/reset"
         android:textAllCaps="true"
-        android:textColor="@color/text"
+        android:textColor="@color/textColor"
         android:textStyle="bold"
         android:id="@+id/main_reset"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_first_layout"
@@ -193,7 +193,8 @@
         app:layout_constraintBottom_toTopOf="@id/main_connect"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/text"/>
+        android:textColor="@color/text"
+        android:id="@+id/main_connection_status"/>
 
 
 
