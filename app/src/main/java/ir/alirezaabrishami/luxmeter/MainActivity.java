@@ -37,9 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private PrintWriter output;
     private BufferedReader input;
     Thread Thread1 = null;
-    Button button;
-    TextView textView;
-    final String SERVER_IP = "192.168.4.1";
+    final String SERVER_IP = "172.20.10.6";
     final int SERVER_PORT = 80;
 
     byte positionPointer = 1;
@@ -76,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 Thread1.start();
             }
         });
-        
+
         resetText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         positionPointer = 1;
         secondLayout.setVisibility(View.GONE);
         thirdLayout.setVisibility(View.GONE);
-        fourthText.setVisibility(View.GONE);
+        fourthLayout.setVisibility(View.GONE);
     }
 
     class Thread1 implements Runnable {
