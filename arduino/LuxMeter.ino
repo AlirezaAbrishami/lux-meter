@@ -15,7 +15,7 @@ void setup() {
     WiFi.softAP(ssid, password);
     wifiServer.begin();
     pinMode(36, INPUT);
-    pinMode(24, INPUT_PULLDOWN);
+    pinMode(14, INPUT_PULLUP);
 }
 
 double luxRead() {
