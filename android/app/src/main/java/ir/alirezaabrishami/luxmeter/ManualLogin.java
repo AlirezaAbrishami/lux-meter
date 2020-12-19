@@ -42,7 +42,7 @@ public class ManualLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int defaultNight = AppCompatDelegate.getDefaultNightMode();
-                if (defaultNight < 2)
+                if (defaultNight != 2 && defaultNight != -100)
                     AppCompatDelegate
                             .setDefaultNightMode(
                                     AppCompatDelegate

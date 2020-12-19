@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private PrintWriter output;
     private BufferedReader input;
     Thread Thread1 = null;
-    final String SERVER_IP = "172.20.10.6";
+    final String SERVER_IP = "192.168.4.1";
     final int SERVER_PORT = 80;
 
     byte positionPointer = 1;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int defaultNight = AppCompatDelegate.getDefaultNightMode();
-                if (defaultNight < 2)
+                if (defaultNight != 2 && defaultNight != -100)
                     AppCompatDelegate
                             .setDefaultNightMode(
                                     AppCompatDelegate
