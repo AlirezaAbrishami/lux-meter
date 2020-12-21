@@ -57,20 +57,17 @@ public class Login extends AppCompatActivity implements QRCodeReaderView.OnQRCod
         nightSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int defaultNight = AppCompatDelegate.getDefaultNightMode();
-                Log.e("default night mode", String.valueOf(defaultNight));
-                if (defaultNight < 2)
-                    AppCompatDelegate
-                            .setDefaultNightMode(
-                                    AppCompatDelegate
-                                            .MODE_NIGHT_YES);
-                else {
+                String mode = getResources().getString(R.string.mode);
+                if (mode.equals("dark"))
                     AppCompatDelegate
                             .setDefaultNightMode(
                                     AppCompatDelegate
                                             .MODE_NIGHT_NO);
-                }
-
+                else
+                    AppCompatDelegate
+                            .setDefaultNightMode(
+                                    AppCompatDelegate
+                                            .MODE_NIGHT_YES);
             }
         });
         writeCode.setOnClickListener(new View.OnClickListener() {

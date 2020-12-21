@@ -41,18 +41,17 @@ public class ManualLogin extends AppCompatActivity {
         nightSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int defaultNight = AppCompatDelegate.getDefaultNightMode();
-                if (defaultNight != 2 && defaultNight != -100)
-                    AppCompatDelegate
-                            .setDefaultNightMode(
-                                    AppCompatDelegate
-                                            .MODE_NIGHT_YES);
-                else {
+                String mode = getResources().getString(R.string.mode);
+                if (mode.equals("dark"))
                     AppCompatDelegate
                             .setDefaultNightMode(
                                     AppCompatDelegate
                                             .MODE_NIGHT_NO);
-                }
+                else
+                    AppCompatDelegate
+                            .setDefaultNightMode(
+                                    AppCompatDelegate
+                                            .MODE_NIGHT_YES);
 
             }
         });
