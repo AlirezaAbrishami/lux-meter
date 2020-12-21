@@ -10,4 +10,5 @@
     <color name="hintColor">#9E9E9E</color>
     <color name="text">#757575</color>
     <color name="buttonTextColor">#FFFFFF</color>
+    <color name="offColor">#C7C7CC</color>
 </resources>
