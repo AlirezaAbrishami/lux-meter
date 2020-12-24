@@ -9,16 +9,18 @@
     <string name="connect">Connect</string>
     <string name="fill_error">Please enter the device info</string>
     <string name="sensor_values">sensor values (lux)</string>
-    <string name="one">1-</string>
-    <string name="two">2-</string>
-    <string name="three">3-</string>
-    <string name="four">4-</string>
+    <string name="first">1-</string>
+    <string name="second">2-</string>
+    <string name="third">3-</string>
+    <string name="fourth">4-</string>
+    <string name="fifth">5-</string>
     <string name="reset">reset</string>
     <string name="connecting">Connecting…</string>
     <string name="mode">dark</string>
-    <string name="pos_one">1</string>
-    <string name="pos_two">2</string>
-    <string name="pos_three">3</string>
-    <string name="pos_four">4</string>
-    <string name="pos_five">5</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="record">Record</string>
 </resources>
