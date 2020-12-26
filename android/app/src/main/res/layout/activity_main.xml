@@ -19,9 +19,11 @@
         app:layout_constraintTop_toTopOf="@id/tool_bar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_scrollview_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/backgroundColor">
+            android:background="@color/backgroundColor"
+            android:visibility="gone">
 
 
             <TextView
@@ -365,6 +367,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/main_fifth_layout" />
 
+            <TextView
+                android:id="@+id/main_average"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:textColor="@color/textColor"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="@id/main_record"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/main_record" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
@@ -378,18 +392,17 @@
         android:textAllCaps="false"
         android:textColor="@color/buttonTextColor"
         android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_scrollview" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="150dp"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/main_connection_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/text"
-        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/main_connect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
