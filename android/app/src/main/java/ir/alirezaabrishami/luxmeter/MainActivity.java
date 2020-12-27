@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     double[] luxValues = new double[5];
     String averageStr;
 
+    Socket socket;
     private PrintWriter output;
     private BufferedReader input;
     Thread Thread1 = null;
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.e("onCreate", "running");
         init();
         nightSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,8 +230,8 @@ public class MainActivity extends AppCompatActivity {
 
     class Thread1 implements Runnable {
         public void run() {
-            Socket socket;
             try {
+                Log.e("Thread1", "running");
                 connectionText.setVisibility(View.VISIBLE);
                 scrollLayout.setVisibility(View.GONE);
                 firstLayout.setVisibility(View.GONE);
@@ -301,17 +302,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onNightModeChanged(int mode) {
-        super.onNightModeChanged(mode);
-        Log.e("night moed", "changed");
-        scrollLayout.setVisibility(View.VISIBLE);
-        firstLayout.setVisibility(View.VISIBLE);
-        secondLayout.setVisibility(View.INVISIBLE);
-        thirdLayout.setVisibility(View.INVISIBLE);
-        fourthLayout.setVisibility(View.INVISIBLE);
-        fifthLayout.setVisibility(View.INVISIBLE);
-        connectButton.setVisibility(View.GONE);
-        connectionText.setVisibility(View.GONE);
-        processMessage("");
+    protected void onStop() {
+        super.onStop();
+        try {
+            if (socket != null)
+                socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
