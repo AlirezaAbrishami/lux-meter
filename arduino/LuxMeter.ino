@@ -13,6 +13,9 @@ void setup() {
 
     delay(1000);
     WiFi.softAP(ssid, password);
+    Serial.println("Connected to the WiFi network");
+    Serial.println(WiFi.localIP());
+
     wifiServer.begin();
     pinMode(36, INPUT);
     pinMode(14, INPUT_PULLUP);
@@ -39,26 +42,15 @@ void loop() {
 
       while (client.available()>0) {
             delay(200);
-            currentState = digitalRead(14);
-            if(currentState == LOW) {
-                Serial.println("The state changed from LOW to HIGH");
-                // save the the last state
-                lastState = currentState;
-                client.write('$');
-                delay(10);
-                client.write('\n');
-                delay(450);
-            } else {
 
-                double lux = luxRead();
-                String luxStr = String(lux) + '\n';
-                for (int i = 0; i < luxStr.length(); i++) {
-                    char luxChar = luxStr.charAt(i);
-                    client.write(luxChar);
-                    delay(10);
-                }
-                Serial.println(analogRead(36));
+            double lux = luxRead();
+            String luxStr = String(lux) + '\n';
+            for (int i = 0; i < luxStr.length(); i++) {
+                char luxChar = luxStr.charAt(i);
+                client.write(luxChar);
+                delay(10);
             }
+            Serial.println(analogRead(36));
       }
 
       delay(10);
