@@ -225,7 +225,7 @@
                 android:elevation="8dp"
                 android:paddingTop="6dp"
                 android:paddingBottom="6dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/main_first_layout">
 
                 <TextView
@@ -259,7 +259,7 @@
                 android:elevation="8dp"
                 android:paddingTop="6dp"
                 android:paddingBottom="6dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/main_second_layout">
 
                 <TextView
@@ -294,7 +294,7 @@
                 android:elevation="8dp"
                 android:paddingTop="6dp"
                 android:paddingBottom="6dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/main_third_layout">
 
                 <TextView
@@ -329,7 +329,7 @@
                 android:elevation="8dp"
                 android:paddingTop="6dp"
                 android:paddingBottom="6dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/main_fourth_layout">
 
                 <TextView
@@ -374,10 +374,10 @@
                 android:textAllCaps="false"
                 android:textColor="@color/textColor"
                 android:textSize="22sp"
-                app:layout_constraintBottom_toBottomOf="@id/main_record"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/main_record" />
+                app:layout_constraintTop_toBottomOf="@id/main_fifth_layout"
+                android:layout_marginTop="30dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -387,16 +387,16 @@
         android:id="@+id/main_connect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
         android:background="@drawable/mybutton"
         android:text="@string/connect"
         android:textAllCaps="false"
         android:textColor="@color/buttonTextColor"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="150dp"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/main_connection_status"
