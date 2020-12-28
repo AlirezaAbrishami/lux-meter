@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.e("onCreate", "running");
+        Intent intent = new Intent(MainActivity.this, Calibrate.class);
+        startActivity(intent);
         init();
         nightSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
         nightSwitch = findViewById(R.id.tool_bar_button);
         Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+
         scrollLayout = findViewById(R.id.main_scrollview_layout);
         connectButton = findViewById(R.id.main_connect);
         firstLayout = findViewById(R.id.main_first_layout);

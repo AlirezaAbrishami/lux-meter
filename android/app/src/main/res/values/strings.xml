@@ -9,6 +9,7 @@
     <string name="connect">Connect</string>
     <string name="fill_error">Please enter the device info</string>
     <string name="sensor_values">sensor values (lux)</string>
+    <string name="sensor_values_calibrate">sensor value (lux):</string>
     <string name="first">1-</string>
     <string name="second">2-</string>
     <string name="third">3-</string>
@@ -24,4 +25,6 @@
     <string name="five">5</string>
     <string name="record">Record</string>
     <string name="average">Average: </string>
+    <string name="calibrate_hint">Please place the lux meter in the middle below your device.</string>
+    <string name="calibrate">Calibrate</string>
 </resources>
