@@ -80,7 +80,7 @@ public class Calibrate extends AppCompatActivity {
     class Thread1 implements Runnable {
         public void run() {
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 Log.e("CalibrateThread1", "running");
                 socket = new Socket(SERVER_IP, SERVER_PORT);
                 output = new PrintWriter(socket.getOutputStream());
@@ -101,7 +101,12 @@ public class Calibrate extends AppCompatActivity {
                     Log.e("CalibrateThread2: ", "running");
                     while (true) {
                         Thread.sleep(10);
-                        final String message = input.readLine();
+                        final String message;
+                        try {
+                            message = input.readLine();
+                        } catch (Exception e) {
+                            return;
+                        }
                         if (message != null) {
                             runOnUiThread(new Runnable() {
                                 @Override
@@ -115,7 +120,7 @@ public class Calibrate extends AppCompatActivity {
                             return;
                         }
                     }
-                } catch (IOException | InterruptedException e) {
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -168,8 +173,11 @@ public class Calibrate extends AppCompatActivity {
         super.onStop();
         stopThread3 = true;
         try {
-            if (socket != null)
+            if (socket != null) {
+                input = null;
+                output = null;
                 socket.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
