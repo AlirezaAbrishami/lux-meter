@@ -180,6 +180,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void processMessage(String message) {
+        if (message.charAt(0) == 'c') {
+            Intent intent = new Intent(MainActivity.this, Calibrate.class);
+            startActivity(intent);
+            finish();
+        }
         if (positionPointer == 1) {
             firstPosition.setBackground(getResources().getDrawable(R.drawable.text_view_background));
             secondPosition.setBackground(getResources().getDrawable(R.drawable.text_view_background_off));
