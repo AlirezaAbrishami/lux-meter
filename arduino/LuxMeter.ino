@@ -1,4 +1,5 @@
 #include <WiFi.h>
+#include <pthread.h>
 
 const char* ssid = "lux-meter";
 const char* password =  "qazwsxedc735";
@@ -14,7 +15,7 @@ void setup() {
 
     delay(1000);
     WiFi.softAP(ssid, password);
-   
+
     wifiServer.begin();
     pinMode(36, INPUT);
     pinMode(14, INPUT_PULLUP);
@@ -31,28 +32,48 @@ double luxRead() {
     return luxAverage / 3;
 }
 
+void *socketReaderThread(void *client) {
+    WiFiClient* c = (WiFiClient*)client;
+    bool done = false;
+    Serial.println("Thread!");
+    while (!done) {
+        yield();
+        delay(10);
+        if (c->read() == 'o') {
+            isCalibrated = true;
+            c->write('o');
+            delay(10);
+            c->write('\n');
+            delay(10);
+            Serial.println("OOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            done = true;
+        }
+    }
+    Serial.println("DONE");
+}
+
 void calibrate(WiFiClient *client) {
+    pthread_t thread;
+    int returnValue = pthread_create(&thread, NULL, socketReaderThread, (void*)client);
+ 
+    if (returnValue) {
+        Serial.println("An error has occurred");
+    }
+    Serial.println("calibrate");
     while (client->connected()) {
-        while (client->available() > 0) {
-            char c = client->read();
-            if (c == 'o') {
+            delay(200);
+            if (isCalibrated) {
                 delta = luxRead();
-                isCalibrated = true;
-                client->write('o');
-                delay(10);
-                client->write('\n');
-                delay(10);
                 return;
             } else {
                 double lux = luxRead();
-                String luxStr = String(lux) + '\n';
+                String luxStr = "hi: " + String(lux) + '\n';
                 for (int i = 0; i < luxStr.length(); i++) {
                     char luxChar = luxStr.charAt(i);
                     client->write(luxChar);
                     delay(10);
                 }
                 Serial.println(analogRead(36));
-            }
         }
     }
 }
@@ -67,8 +88,7 @@ void loop() {
 
       while (client.available()>0) {
             delay(200);
-            char c = client.read();
-            if (c == 'h' && !isCalibrated) {
+            if (!isCalibrated) {
                 client.write('c');
                 delay(10);
                 client.write('\n');
@@ -94,3 +114,4 @@ void loop() {
 
   }
 }
+

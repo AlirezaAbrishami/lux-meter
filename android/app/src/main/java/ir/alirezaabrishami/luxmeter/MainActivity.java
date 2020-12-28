@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.e("onCreate", "running");
-        Intent intent = new Intent(MainActivity.this, Calibrate.class);
-        startActivity(intent);
         init();
         nightSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -274,7 +272,13 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("Thread2: ", "running");
                     while (true) {
                         Thread.sleep(10);
-                        final String message = input.readLine();
+                        final String message;
+                        try {
+                            message = input.readLine();
+                        } catch (Exception x) {
+                            Log.e("thread2", "return");
+                            return;
+                        }
                         if (message != null) {
                             runOnUiThread(new Runnable() {
                                 @Override
@@ -288,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
                     }
-                } catch (IOException | InterruptedException e) {
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -314,8 +318,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         try {
-            if (socket != null)
+            if (socket != null) {
+                output = null;
+                input = null;
                 socket.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

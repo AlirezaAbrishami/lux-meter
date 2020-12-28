@@ -27,10 +27,11 @@ public class Calibrate extends AppCompatActivity {
     Socket socket;
     private PrintWriter output;
     private BufferedReader input;
-    Thread Thread1 = null;
+    Thread Thread1;
     final String SERVER_IP = "172.20.10.6";
     final int SERVER_PORT = 80;
     boolean sendOk;
+    boolean stopThread3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,8 @@ public class Calibrate extends AppCompatActivity {
 
             }
         });
+        Thread1 = new Thread(new Thread1());
+        Thread1.start();
         calibrateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,13 +80,14 @@ public class Calibrate extends AppCompatActivity {
     class Thread1 implements Runnable {
         public void run() {
             try {
+                Thread.sleep(2000);
                 Log.e("CalibrateThread1", "running");
                 socket = new Socket(SERVER_IP, SERVER_PORT);
                 output = new PrintWriter(socket.getOutputStream());
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 new Thread(new Calibrate.Thread3()).start();
                 new Thread(new Calibrate.Thread2()).start();
-            } catch (IOException e) {
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
@@ -126,10 +130,24 @@ public class Calibrate extends AppCompatActivity {
             Log.e("CalibrateThread3: ", "running");
             while (true) {
                 if (sendOk) {
-                    output.write("o");
+                    output.write('o');
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    output.write('\n');
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     output.flush();
+                    Log.e("CalibrateThread3", "ok");
                     sendOk = false;
                 }
+                if (stopThread3)
+                    return;
             }
         }
     }
@@ -148,6 +166,7 @@ public class Calibrate extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        stopThread3 = true;
         try {
             if (socket != null)
                 socket.close();
