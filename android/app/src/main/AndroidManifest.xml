@@ -20,7 +20,8 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ManualLogin"></activity>
+        <activity android:name=".Calibrate"></activity>
+        <activity android:name=".ManualLogin" />
         <activity android:name=".Login">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

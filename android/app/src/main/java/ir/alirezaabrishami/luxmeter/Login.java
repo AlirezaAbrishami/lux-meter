@@ -1,6 +1,5 @@
 package ir.alirezaabrishami.luxmeter;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
@@ -12,7 +11,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.PointF;
 import android.net.wifi.WifiConfiguration;
@@ -37,6 +35,7 @@ public class Login extends AppCompatActivity implements QRCodeReaderView.OnQRCod
     private static final int PERMISSION_REQUEST_CODE = 200;
     Button writeCode;
     ImageView nightSwitch;
+    boolean isPermissionRequested;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +52,7 @@ public class Login extends AppCompatActivity implements QRCodeReaderView.OnQRCod
             qrCodeReaderView.setBackCamera();
         } else {
             requestPermission();
+            isPermissionRequested = true;
         }
         nightSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,32 +119,38 @@ public class Login extends AppCompatActivity implements QRCodeReaderView.OnQRCod
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.CAMERA},
                 PERMISSION_REQUEST_CODE);
+        Log.e("requestPermission", "done");
     }
 
     private boolean checkPermission() {
         // Permission is not granted
+        if (isPermissionRequested) {
+            showMessageOKCancel("You need to allow access permissions",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            requestPermission();
+                        }
+                    }, Login.this);
+        }
         return ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        Log.e("onRequestResult", "running");
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(getApplicationContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
-
-                // main logic
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
             } else {
                 Toast.makeText(getApplicationContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                             != PackageManager.PERMISSION_GRANTED) {
-                        showMessageOKCancel("You need to allow access permissions",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        requestPermission();
-                                    }
-                                }, Login.this);
+
                     }
                 }
             }
