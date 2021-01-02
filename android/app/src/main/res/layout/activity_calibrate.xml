@@ -11,11 +11,22 @@
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar" />
 
+
+    <ImageView
+        android:id="@+id/calibrate_help"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="7dp"
+        android:src="@drawable/baseline_help"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tool_bar" />
+
     <TextView
         android:id="@+id/calibrate_position_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="110dp"
         android:background="@drawable/text_view_background_off"
         android:paddingStart="8dp"
@@ -32,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="110dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/text_view_background_off"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
@@ -200,11 +211,11 @@
         android:text="@string/calibrate"
         android:textAllCaps="false"
         android:textColor="@color/buttonTextColor"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/calibrate_layout"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toBottomOf="@id/calibrate_layout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

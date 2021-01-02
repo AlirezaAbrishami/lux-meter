@@ -1,5 +1,6 @@
 package ir.alirezaabrishami.luxmeter;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
@@ -23,12 +24,13 @@ public class Calibrate extends AppCompatActivity {
     ImageView nightSwitch;
     Button calibrateButton;
     TextView sensorValueText;
+    ImageView helpButton;
 
     Socket socket;
     private PrintWriter output;
     private BufferedReader input;
     Thread Thread1;
-    final String SERVER_IP = "172.20.10.6";
+    final String SERVER_IP = "192.168.4.1";
     final int SERVER_PORT = 80;
     boolean sendOk;
     boolean stopThread3;
@@ -53,6 +55,17 @@ public class Calibrate extends AppCompatActivity {
                                     AppCompatDelegate
                                             .MODE_NIGHT_YES);
 
+            }
+        });
+
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(Calibrate.this)
+                        .setMessage(R.string.help)
+                        .setNegativeButton("OK", null)
+                        .create()
+                        .show();
             }
         });
         Thread1 = new Thread(new Thread1());
@@ -166,6 +179,7 @@ public class Calibrate extends AppCompatActivity {
 
         calibrateButton = findViewById(R.id.calibrate_button);
         sensorValueText = findViewById(R.id.calibrate_value);
+        helpButton = findViewById(R.id.calibrate_help);
     }
 
     @Override

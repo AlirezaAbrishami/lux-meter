@@ -11,12 +11,23 @@
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar" />
 
+
+    <ImageView
+        android:id="@+id/main_help"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="3dp"
+        android:src="@drawable/baseline_help"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tool_bar" />
+
     <ScrollView
         android:id="@+id/main_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
-        app:layout_constraintTop_toTopOf="@id/tool_bar">
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toBottomOf="@id/main_help">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main_scrollview_layout"
@@ -25,12 +36,11 @@
             android:background="@color/backgroundColor"
             android:visibility="gone">
 
-
             <TextView
                 android:id="@+id/main_position_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
+                android:layout_marginTop="7dp"
                 android:layout_marginEnd="110dp"
                 android:background="@drawable/text_view_background_off"
                 android:paddingStart="8dp"
@@ -47,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="110dp"
-                android:layout_marginTop="17dp"
+                android:layout_marginTop="7dp"
                 android:background="@drawable/text_view_background_off"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
@@ -371,13 +381,13 @@
                 android:id="@+id/main_average"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:textAllCaps="false"
                 android:textColor="@color/textColor"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/main_fifth_layout"
-                android:layout_marginTop="30dp" />
+                app:layout_constraintTop_toBottomOf="@id/main_fifth_layout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

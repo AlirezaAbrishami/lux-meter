@@ -27,4 +27,5 @@
     <string name="average">Average: </string>
     <string name="calibrate_hint">Please place the lux meter in the middle below your device.</string>
     <string name="calibrate">Calibrate</string>
+    <string name="help">این وسیله برای اندازه گیری شدت نور دستگاه فتوتراپی طراحی شده است. جهت اندازه گیری, لوکس متر را ابتدا پس از بردن آن وسط زیر دستگاه, کالیبره کنید و سپس در پنچ جای دستگاه ببرید و طبق راهنمایی های برنامه عمل کنید.</string>
 </resources>

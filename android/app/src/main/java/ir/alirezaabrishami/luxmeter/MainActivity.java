@@ -1,5 +1,6 @@
 package ir.alirezaabrishami.luxmeter;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     TextView fifthPosition;
     Button recordButton;
     TextView averageTextView;
+    ImageView helpButton;
 
     double[] luxValues = new double[5];
     String averageStr;
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private PrintWriter output;
     private BufferedReader input;
     Thread Thread1 = null;
-    final String SERVER_IP = "172.20.10.6";
+    final String SERVER_IP = "192.168.4.1";
     final int SERVER_PORT = 80;
 
     byte positionPointer = 1;
@@ -78,6 +80,17 @@ public class MainActivity extends AppCompatActivity {
                                     AppCompatDelegate
                                             .MODE_NIGHT_YES);
 
+            }
+        });
+
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setMessage(R.string.help)
+                        .setNegativeButton("OK", null)
+                        .create()
+                        .show();
             }
         });
 
@@ -164,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
         titleText = findViewById(R.id.main_title);
         recordButton = findViewById(R.id.main_record);
         averageTextView = findViewById(R.id.main_average);
+        helpButton = findViewById(R.id.main_help);
 
         averageStr = getResources().getString(R.string.average);
     }
