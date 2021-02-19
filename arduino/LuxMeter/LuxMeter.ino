@@ -6,8 +6,6 @@ const char* password =  "qazwsxedc735";
 int lastState = HIGH; // the previous state from the input pin
 double delta;
 bool isCalibrated;
-bool done = false;
-
 
 WiFiServer wifiServer(80);
 
@@ -19,6 +17,8 @@ void setup() {
     WiFi.softAP(ssid, password);
 
     wifiServer.begin();
+    pinMode(36, INPUT);
+    pinMode(14, INPUT_PULLUP);
 }
 
 double luxRead() {
@@ -29,29 +29,24 @@ double luxRead() {
         delay(3);
         luxAverage += lux[i];
     }
-    luxAverage = luxAverage / 3;
-    return luxAverage >= 0 ? luxAverage : 0;
+    return luxAverage / 3;
 }
 
 void *socketReaderThread(void *client) {
     WiFiClient* c = (WiFiClient*)client;
-    done = false;
+    bool done = false;
     Serial.println("Thread!");
     while (!done) {
         yield();
         delay(10);
-        try {
-            if (c->read() == 'o') {
-                isCalibrated = true;
-                c->write('o');
-                delay(10);
-                c->write('\n');
-                delay(10);
-                Serial.println("OOOOOOOOOOOOOOOOOOOOOOOOOOO");
-                done = true;
-            }
-        } catch (std::exception e) {
-            break;
+        if (c->read() == 'o') {
+            isCalibrated = true;
+            c->write('o');
+            delay(10);
+            c->write('\n');
+            delay(10);
+            Serial.println("OOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            done = true;
         }
     }
     Serial.println("DONE");
@@ -60,49 +55,45 @@ void *socketReaderThread(void *client) {
 void calibrate(WiFiClient *client) {
     pthread_t thread;
     int returnValue = pthread_create(&thread, NULL, socketReaderThread, (void*)client);
-
+ 
     if (returnValue) {
         Serial.println("An error has occurred");
     }
     Serial.println("calibrate");
     while (client->connected()) {
-        delay(200);
-        if (isCalibrated) {
-            delta = luxRead();
-            return;
-        } else {
-            double lux = luxRead();
-            String luxStr = String(lux) + '\n';
-            for (int i = 0; i < luxStr.length(); i++) {
-                char luxChar = luxStr.charAt(i);
-                if (client->connected())
+            delay(200);
+            if (isCalibrated) {
+                delta = luxRead();
+                return;
+            } else {
+                double lux = luxRead();
+                String luxStr = "hi: " + String(lux) + '\n';
+                for (int i = 0; i < luxStr.length(); i++) {
+                    char luxChar = luxStr.charAt(i);
                     client->write(luxChar);
-                delay(10);
-            }
-            Serial.println(analogRead(36));
+                    delay(10);
+                }
+                Serial.println(analogRead(36));
         }
     }
-    // Serial.println("disconnected");
-    done = true;
 }
 
 void loop() {
 
-    WiFiClient client = wifiServer.available();
+  WiFiClient client = wifiServer.available();
 
-    if (client) {
+  if (client) {
 
-        while (client.connected()) {
+    while (client.connected()) {
 
+      while (client.available()>0) {
             delay(200);
             if (!isCalibrated) {
                 client.write('c');
                 delay(10);
                 client.write('\n');
                 delay(10);
-                try {
-                    calibrate(&client);
-                } catch (std::exception e) {}
+                calibrate(&client);
             } else {
                 double lux = luxRead();
                 String luxStr = String(lux) + '\n';
@@ -113,12 +104,14 @@ void loop() {
                 }
                 Serial.println(analogRead(36));
             }
+      }
 
-            delay(10);
-        }
-
-        client.stop();
-        Serial.println("Client disconnected");
-
+      delay(10);
     }
+
+    client.stop();
+    Serial.println("Client disconnected");
+
+  }
 }
+
